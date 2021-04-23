@@ -25,6 +25,7 @@ export function Player() {
     setPlayingState,
     playNext,
     playPrevious,
+    clearPLayerState,
     hasNext,
     hasPrevious,
   } = usePlayer();
@@ -47,6 +48,19 @@ export function Player() {
     audioRef.current.addEventListener('timeupdate', () =>{
       setProgress(Math.floor(audioRef.current.currentTime));
     });
+  }
+
+  function handleSeek(amount: number){
+    audioRef.current.currentTime = amount;
+    setProgress(amount);
+  }
+
+  function handleEpisodeEnded(){
+    if(hasNext){
+      playNext();
+    }else{
+      clearPLayerState();
+    }
   }
 
   const episode = episodeList[currentEpisodeIndex];
@@ -83,6 +97,7 @@ export function Player() {
               <Slider
                 max={episode.duration}
                 value={progress}
+                onChange={handleSeek}
                 trackStyle={{ backgroundColor: "#84d361" }}
                 railStyle={{ backgroundColor: "#9f75ff" }}
                 handleStyle={{ borderColor: "#84d361", borderWidth: 4 }}
@@ -99,6 +114,7 @@ export function Player() {
             src={episode.url}
             ref={audioRef}
             autoPlay
+            onEnded={handleEpisodeEnded}
             loop={isLooping}
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
