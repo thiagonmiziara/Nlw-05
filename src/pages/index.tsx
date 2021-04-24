@@ -94,7 +94,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
             {allEpisodes.map((episode, index) => {
               return (
                 <tr key={episode.id}>
-                  <td style={{ width: 72 }}>
+                  <td>
                     <Image
                       width={192}
                       height={192}
@@ -109,7 +109,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     </Link>
                   </td>
                   <td>{episode.members}</td>
-                  <td style={{ width: 100 }}>{episode.publishedAt}</td>
+                  <td >{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
                     <button

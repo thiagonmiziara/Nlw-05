@@ -4,4 +4,8 @@
   main{
     flex: 1;
   }
+
+  @media (max-width: 960px){
+    flex-direction: column;
+  }
 }

@@ -19,4 +19,10 @@
     margin-left: auto;
     text-transform: capitalize; //deixa a primeira letra de cada palavra em maiusculo
   }
+
+  @media(max-width:610px){
+    p{
+      display: none;
+    }
+  }
 }
